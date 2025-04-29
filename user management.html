@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>user management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen font-sans text-gray-800">  
+  <div class="flex flex-col md:flex-row min-h-screen"> 
+    <!-- Desktop Sidebar -->
+    <aside class="bg-indigo-900 rounded-r-lg  text-white w-64 shrink-0 hidden md:block">
+      <div class="flex justify-center ">
+        <img src="image/CCTV__-removebg-preview.png" alt="Logo"
+        style="width: 120px; height: 120px; filter: invert(1) brightness(0.8);" 
+        class="object-contain text-center" />
+             </div>
+        <nav class="p-4 space-y-7">
+            <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+            <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+            <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+            <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+            <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+     
+        </nav>
+        <div class="flex justify-center">
+           <!-- Logout Button -->
+           <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-indigo-900 text-indigo-500">
+            <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+            <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+            Logout
+        </a>
+    </div>
+    </aside>
+    
+    <!-- Mobile Hamburger Button -->
+    <div class="md:hidden fixed top-4 left-4 z-50">
+        <button onclick="toggleSidebar()" class="text-white bg-indigo-700 p-2 rounded shadow">
+            ☰
+        </button>
+    </div>
+    
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-40 transform -translate-x-full transition-transform duration-300 md:hidden">
+        <div class="pt-20 md:pt-6 p-4 text-2xl font-bold border-b border-indigo-500 flex justify-between items-center">
+            <span>Dashboard</span>
+            <button onclick="toggleSidebar()" class="text-white text-xl">&times;</button>
+        </div>
+        <nav class="p-4 space-y-2">
+            <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+            <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+            <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+            <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+            <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+            
+         
+        </nav>
+        <div class="flex justify-center">
+            <!-- Logout Button -->
+            <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-red-500 text-indigo-500">
+             <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+             <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+             Logout
+         </a>
+     </div>
+    </div>
+    
+      <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 fixed top-0 right-0 left-0 md:left-64 z-30">
+        <div class="flex items-center">
+          <!-- Sidebar toggle button (mobile only) -->
+          <button @click="sidebarOpen = true" class="text-gray-500 md:hidden mr-4" aria-label="Open sidebar">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+      
+          <!-- Dashboard Title -->
+          <!-- <h1 class="text-lg font-semibold text-gray-800">Dashboard</h1> -->
+        </div>
+      
+        <!-- Search and Icons -->
+        <div class="flex items-center">
+          
+      
+          <div class="ml-4 flex items-center">
+            <button class="text-gray-500 mr-4" aria-label="Notifications">
+              <i class="fas fa-bell"></i>
+            </button>
+            <div class="w-10 h-10 rounded-full" role="img" aria-label="User avatar"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+              </div>
+          </div>
+        </div>
+      </header>
+  <section class="py-20 px-4 sm:px-8 w-screen">
+    <!-- Service Master Container -->
+    <div class="p-4">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold capitalize">User Management</h2>
+        <button
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          onclick="document.getElementById('addModal').classList.remove('hidden')"
+        >
+          Add
+        </button>
+      </div>
+  
+      <!-- Table -->
+      <div class="shadow-lg rounded-lg overflow-x-auto mx-0 sm:mx-4 md:mx-10">
+        <table class="w-full table-fixed min-w-[600px]">
+          <thead>
+            <tr class="bg-indigo-900">
+              <th class="w-1/5 py-4 px-6 text-left text-gray-100 font-bold uppercase">S.No</th>
+              <th class="w-1/5 py-4 px-6 text-left text-gray-100 font-bold uppercase">Employee Name</th>
+              <th class="w-1/5 py-4 px-6 text-left text-gray-100 font-bold uppercase">Email ID</th>
+              <th class="w-1/5 py-4 px-6 text-left text-gray-100 font-bold uppercase">Role</th>
+              <th class="w-1/5 py-4 px-6 text-left text-gray-100 font-bold uppercase">Status</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <!-- Example Rows -->
+            <tr>
+              <td class="py-4 px-6 border-b border-gray-200">1</td>
+              <td class="py-4 px-6 border-b border-gray-200 truncate">Lokesh</td>
+              <td class="py-4 px-6 border-b border-gray-200">johndoe@gmail.com</td>
+              <td class="py-4 px-6 border-b border-gray-200">Admin</td>
+              <td class="py-4 px-6 border-b border-gray-200">
+                <span class="bg-green-500 text-white py-1 px-2 rounded-full text-xs">Active</span>
+              </td>
+            </tr>
+            <!-- More rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Add User Modal -->
+  <!-- Modal Overlay -->
+<div id="addModal" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex items-start sm:items-center justify-center p-3 hidden">
+
+  <!-- Modal Content -->
+  <div class="relative w-full max-w-xl mx-4 sm:mx-auto max-h-[90vh] overflow-y-auto bg-white border border-indigo-900 px-4 py-6 rounded-xl shadow-lg">
+    <!-- Close Button -->
+    <button
+      onclick="document.getElementById('addModal').classList.add('hidden')"
+      class="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl font-bold"
+      aria-label="Close Modal">&times;</button>
+
+    <form onsubmit="event.preventDefault(); document.getElementById('addModal').classList.add('hidden');">
+      <h2 class="text-xl sm:text-2xl font-semibold text-indigo-900 mb-6">Create New User</h2>
+
+      <!-- User Info Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter full name"
+            class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-gray-500 transition duration-300">
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter email address"
+            class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-gray-500 transition duration-300">
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password"
+          class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-gray-500 transition duration-300">
+      </div>
+
+      <div class="mt-4">
+        <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+        <select id="role" name="role"
+          class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+          <option value="admin">Admin</option>
+          <option value="manager">Manager</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+
+      <div class="mt-4">
+        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+        <select id="status" name="status"
+          class="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Permissions -->
+      <div class="mt-6">
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Permissions</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="flex items-center space-x-4 hover:bg-indigo-100 rounded-lg p-4 transition duration-300 ease-in-out transform hover:scale-105">
+            <input type="checkbox" id="view_permission" name="permissions"
+              class="h-6 w-6 text-indigo-600 border-gray-300 rounded focus:ring-2 focus:ring-indigo-500">
+            <label for="view_permission" class="text-sm font-medium text-gray-700">View</label>
+          </div>
+          <div class="flex items-center space-x-4 hover:bg-indigo-100 rounded-lg p-4 transition duration-300 ease-in-out transform hover:scale-105">
+            <input type="checkbox" id="update_permission" name="permissions"
+              class="h-6 w-6 text-indigo-600 border-gray-300 rounded focus:ring-2 focus:ring-indigo-500">
+            <label for="update_permission" class="text-sm font-medium text-gray-700">Update</label>
+          </div>
+          <div class="flex items-center space-x-4 hover:bg-indigo-100 rounded-lg p-4 transition duration-300 ease-in-out transform hover:scale-105">
+            <input type="checkbox" id="edit_permission" name="permissions"
+              class="h-6 w-6 text-indigo-600 border-gray-300 rounded focus:ring-2 focus:ring-indigo-500">
+            <label for="edit_permission" class="text-sm font-medium text-gray-700">Edit</label>
+          </div>
+          <div class="flex items-center space-x-4 hover:bg-indigo-100 rounded-lg p-4 transition duration-300 ease-in-out transform hover:scale-105">
+            <input type="checkbox" id="delete_permission" name="permissions"
+              class="h-6 w-6 text-indigo-600 border-gray-300 rounded focus:ring-2 focus:ring-indigo-500">
+            <label for="delete_permission" class="text-sm font-medium text-gray-700">Delete</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row justify-between gap-4 mt-6">
+        <button type="button"
+          onclick="document.getElementById('addModal').classList.add('hidden')"
+          class="px-6 py-3 font-bold rounded-lg border-2 border-gray-400 text-gray-700 hover:text-white hover:bg-gray-600 transition duration-300">
+          Back
+        </button>
+        <button type="submit"
+          class="relative px-6 py-3 font-bold rounded-lg overflow-hidden group bg-white border-2 border-indigo-900 text-indigo-900">
+          <span class="absolute inset-0 bg-indigo-900 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+          <span class="relative z-10 group-hover:text-white text-indigo-900 transition-colors duration-300">
+            Create User
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  </section>
+  
+
+      </div>
+      
+
+<script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.tab-section');
+      sections.forEach(section => section.classList.add('hidden'));
+      document.getElementById(sectionId).classList.remove('hidden');
+
+      // Close mobile sidebar on selection
+      const mobileSidebar = document.getElementById('mobileSidebar');
+      if (mobileSidebar && !mobileSidebar.classList.contains('-translate-x-full')) {
+        mobileSidebar.classList.add('-translate-x-full');
+      }
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('mobileSidebar');
+      sidebar.classList.toggle('-translate-x-full');
+    }
+  </script>
+  
+</body>
+</html>

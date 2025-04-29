@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans text-gray-800"> 
+      
+    <div class="flex flex-col md:flex-row min-h-screen">
+      
+      <!-- Desktop Sidebar -->
+      <aside class="bg-indigo-900 fixed top-0 left-0 h-screen rounded-r-lg text-white w-64 shrink-0 hidden md:block z-50">
+          <div class="flex justify-center ">
+            <img src="image/CCTV__-removebg-preview.png" alt="Logo"
+            style="width: 120px; height: 120px; filter: invert(1) brightness(0.8);" 
+            class="object-contain text-center" />
+                 </div>
+          <nav class="p-4 space-y-7">
+              <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+              <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+              <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+              <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+              <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+              
+           
+          </nav>
+          <div class="flex justify-center">
+             <!-- Logout Button -->
+             <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-indigo-900 text-indigo-500">
+              <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+              <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+              Logout
+          </a>
+      </div>
+      </aside>
+      
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden fixed top-4 left-4 z-50">
+          <button onclick="toggleSidebar()" class="text-white bg-indigo-700 p-2 rounded shadow">
+              ☰
+          </button>
+      </div>
+      
+      <!-- Mobile Sidebar -->
+      <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-40 transform -translate-x-full transition-transform duration-300 md:hidden">
+          <div class="pt-20 md:pt-6 p-4 text-2xl font-bold border-b border-indigo-500 flex justify-between items-center">
+              <span>Dashboard</span>
+              <button onclick="toggleSidebar()" class="text-white text-xl">&times;</button>
+          </div>
+          <nav class="p-4 space-y-2">
+              <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+              <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+              <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+              <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+              <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+              
+           
+          </nav>
+          <div class="flex justify-center">
+              <!-- Logout Button -->
+              <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-red-500 text-indigo-500">
+               <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+               <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+               Logout
+           </a>
+       </div>
+      </div>
+      
+        <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 fixed top-0 right-0 left-0 md:left-64 z-30">
+          <div class="flex items-center">
+            <!-- Sidebar toggle button (mobile only) -->
+            <button @click="sidebarOpen = true" class="text-gray-500 md:hidden mr-4" aria-label="Open sidebar">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+        
+            <!-- Dashboard Title -->
+            <!-- <h1 class="text-lg font-semibold text-gray-800">Dashboard</h1> -->
+          </div>
+        
+          <!-- Search and Icons -->
+          <div class="flex items-center">
+            
+        
+            <div class="ml-4 flex items-center">
+              <button class="text-gray-500 mr-4" aria-label="Notifications">
+                <i class="fas fa-bell"></i>
+              </button>
+              <div class="w-10 h-10 rounded-full" role="img" aria-label="User avatar"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+                </div>
+            </div>
+          </div>
+        </header>
+<main class="dashboard-page tab-section p-4 w-full py-20 mt-5">
+    <div class="md:ml-72">
+        <section>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              
+              <!-- Total Customers -->
+              <div class="bg-gradient-to-br from-white via-[#f4f4f6] to-[#e5e7eb] backdrop-blur-md border border-[#e0e0e0] p-6 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-105 ease-in-out duration-300 flex justify-between items-center">
+                <div>
+                  <div class="text-gray-600 text-xs font-semibold uppercase tracking-wider">Total Customers</div>
+                  <div class="text-4xl font-extrabold text-gray-900 mt-2">0</div>
+                  <div class="mt-2 text-sm text-gray-500">All customers in the system</div>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow">
+                  <!-- SVG: Users -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4B5563" class="size-7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                  </svg>
+                </div>
+              </div>
+          
+              <!-- Active -->
+              <div class="bg-gradient-to-br from-white via-[#ecfdf5] to-[#d1fae5] backdrop-blur-md border border-[#ccf0e1] p-6 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-105 ease-in-out duration-300 flex justify-between items-center">
+                <div>
+                  <div class="text-gray-600 text-xs font-semibold uppercase tracking-wider">Active</div>
+                  <div class="text-4xl font-extrabold text-gray-900 mt-2">0</div>
+                  <div class="mt-2 text-sm text-gray-500">Currently active customers</div>
+                </div>
+                <div class="bg-[#34D399] text-white p-3 rounded-lg shadow">
+                  <!-- Active SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 12H6V6H11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6 17H18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 2H3.5C2.67157 2 2 2.67157 2 3.5V20.5C2 21.3284 2.67157 22 3.5 22H20.5C21.3284 22 22 21.3284 22 20.5V11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.5 5.5L18 7L22 2.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+          
+              <!-- Inactive -->
+              <div class="bg-gradient-to-br from-white via-[#fef2f2] to-[#fee2e2] backdrop-blur-md border border-[#fddcdc] p-6 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-105 ease-in-out duration-300 flex justify-between items-center">
+                <div>
+                  <div class="text-gray-600 text-xs font-semibold uppercase tracking-wider">Inactive</div>
+                  <div class="text-4xl font-extrabold text-gray-900 mt-2">0</div>
+                  <div class="mt-2 text-sm text-gray-500">Customers who are inactive</div>
+                </div>
+                <div class="bg-[#F87171] text-white p-3 rounded-lg shadow">
+                  <!-- Inactive SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-3xl" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </div>
+              </div>
+          
+              <!-- Expiring Soon -->
+              <div class="bg-gradient-to-br from-white via-[#fefce8] to-[#fef9c3] backdrop-blur-md border border-[#fdf4ae] p-6 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-105 ease-in-out duration-300 flex justify-between items-center">
+                <div>
+                  <div class="text-gray-600 text-xs font-semibold uppercase tracking-wider">Expiring Soon</div>
+                  <div class="text-4xl font-extrabold text-gray-900 mt-2">0</div>
+                  <div class="mt-2 text-sm text-gray-500">Contracts close to expiration</div>
+                </div>
+                <div class="bg-[#F59E0B] text-white p-3 rounded-lg shadow">
+                  <!-- Expiring SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="32" height="32">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3h10.5m-10.5 0a2.25 2.25 0 00-2.25 2.25v.63c0 .621.252 1.216.7 1.652l4.927 4.772a2.25 2.25 0 010 3.214l-4.927 4.772a2.332 2.332 0 00-.7 1.652v.63A2.25 2.25 0 006.75 21h10.5a2.25 2.25 0 002.25-2.25v-.63a2.332 2.332 0 00-.7-1.652l-4.927-4.772a2.25 2.25 0 010-3.214l4.927-4.772c.448-.436.7-1.03.7-1.652v-.63A2.25 2.25 0 0017.25 3H6.75z" />
+                  </svg>
+                </div>
+              </div>
+          
+              <!-- Expired -->
+              <div class="bg-gradient-to-br from-white via-[#f3f4f6] to-[#d1d5db] backdrop-blur-md border border-[#d4d4d8] p-6 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-105 ease-in-out duration-300 flex justify-between items-center">
+                <div>
+                  <div class="text-gray-600 text-xs font-semibold uppercase tracking-wider">Expired</div>
+                  <div class="text-4xl font-extrabold text-gray-900 mt-2">0</div>
+                  <div class="mt-2 text-sm text-gray-500">Expired contracts</div>
+                </div>
+                <div class="bg-[#9CA3AF] text-white p-3 rounded-lg shadow">
+                  <!-- Expired SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-3xl" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="32" height="32">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </div>
+              </div>
+          
+            </div>
+          </section>
+          
+      
+
+    <!-- Expired Customer Dropdown -->
+    <section class="py-20 grid grid-cols-1 lg:grid-cols-2 max-w-full">
+        <div class="container mx-auto p-4">
+            <div class="overflow-x-auto bg-white shadow-md rounded-lg max-h-96 relative">
+                <table class="min-w-full text-sm text-gray-700">
+                    <thead class="bg-indigo-900 sticky top-0 z-10">
+                        <tr>
+                            <th class="px-4 py-2 text-white text-left">Customer Name</th>
+                            <th class="px-4 py-2 text-white text-left">Service Type</th>
+                            <th class="px-4 py-2 text-white text-left">Expiry Date</th>
+                            <th class="px-4 py-2 text-white text-left">No Expiry Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example Row 1 -->
+                        <tr>
+                            <td class="px-4 py-2">Customer A</td>
+                            <td class="px-4 py-2">Premium</td>
+                            <td class="px-4 py-2">2025-12-31</td>
+                            <td class="px-4 py-2">30</td>
+                        </tr>
+                        <!-- Example Row 2 -->
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <!-- More Rows -->
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <div class="container mx-auto p-4">
+            <div class="overflow-x-auto bg-white shadow-md rounded-lg max-h-96 relative">
+                <table class="min-w-full text-sm text-gray-700">
+                    <thead class="bg-indigo-900 sticky top-0 z-10">
+                        <tr>
+                            <th class="px-4 py-2 text-white text-left">Customer Name</th>
+                            <th class="px-4 py-2 text-white text-left">Service Type</th>
+                            <th class="px-4 py-2 text-white text-left">Expiry Date</th>
+                            <th class="px-4 py-2 text-white text-left">No Expiry Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example Row 1 -->
+                        <tr>
+                            <td class="px-4 py-2">Customer A</td>
+                            <td class="px-4 py-2">Premium</td>
+                            <td class="px-4 py-2">2025-12-31</td>
+                            <td class="px-4 py-2">30</td>
+                        </tr>
+                        <!-- Example Row 2 -->
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Customer B</td>
+                            <td class="px-4 py-2">Standard</td>
+                            <td class="px-4 py-2">2025-10-15</td>
+                            <td class="px-4 py-2">45</td>
+                        </tr>
+                        <!-- More Rows -->
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+      </main>
+    </div>
+
+</div>
+<script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.tab-section');
+      sections.forEach(section => section.classList.add('hidden'));
+      document.getElementById(sectionId).classList.remove('hidden');
+
+      // Close mobile sidebar on selection
+      const mobileSidebar = document.getElementById('mobileSidebar');
+      if (mobileSidebar && !mobileSidebar.classList.contains('-translate-x-full')) {
+        mobileSidebar.classList.add('-translate-x-full');
+      }
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('mobileSidebar');
+      sidebar.classList.toggle('-translate-x-full');
+    }
+  </script>
+</body>
+</html>

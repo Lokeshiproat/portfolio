@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Next Section</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="relative w-full max-w-6xl min-h-screen  rounded-xl shadow-xl overflow-hidden text-white flex flex-col justify-between ">
+
+    <!-- Top Left: Logo -->
+    <div class="flex justify-start">
+      <img src="image/OIP.png" alt="Logo" class="h-96 w-auto">
+    </div>
+  
+    <div class="ml-10">
+        <button class="text-black hover:text-blue-600 transition" onclick="history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 stroke-width="2" stroke="currentColor" class="w-10 h-10">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+          </button>
+      </div>
+    <!-- Center: 2 Lines -->
+    <div class="flex-1 flex flex-col text-black items-center justify-center text-center relative pb-96">
+      <p class="text-4xl sm:text-4xl font-semibold">Please select your preferred language to continue</p>
+      <p class="text-lg sm:text-4xl mt-7">يرجى تحديد لغتك المفضلة للمتابعة</p>
+
+      <!-- Bottom Center: Buttons aligned left and right -->
+
+      <a href="otp.html">
+      <div class="absolute bottom-0 left-0 right-0 text-white mb-96 flex justify-between">
+       
+        <button class="bg-green-800 px-6 py-6  rounded-r-2xl  text-4xl hover:bg-green-700 transition">English</button>
+        <button class="bg-green-800 px-6 py-6 rounded-s-2xl text-4xl hover:bg-green-700 transition">الإنكليزية</button>
+       
+      </div>
+    </a>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="flex flex-wrap justify-between bg-indigo-950 p-3  items-end  text-white text-3xl">
+      <!-- Bottom Left: Icon + Number -->
+      <div class="flex items-center space-x-2">
+        <h1 class="text-3xl font-bold">80008322</h1>
+      </div>
+
+      <!-- Bottom Right: Image -->
+      <div class="mt-4 sm:mt-0">
+        <a href="">support@ufc.com</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

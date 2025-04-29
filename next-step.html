@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMI Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen relative">
+  <!-- Main EMI Container -->
+  <div
+    class="relative w-full min-h-screen rounded-xl shadow-xl overflow-hidden text-white flex flex-col px-4">
+  
+    <!-- Top Left: Logo -->
+    <div class="flex justify-start object-contain">
+      <img src="image/OIP.png" alt="Logo" class="h-28 w-auto">
+    </div>
+
+    <!-- Back Button -->
+    <!-- User Info Box -->
+    <div class="bg-blue-900 text-white rounded-tl-3xl rounded-br-3xl mt-10 p-6 text-lg sm:text-2xl space-y-1 ">
+      <p><strong>Name :</strong> NABEEL</p>
+      <p><strong>Mobile NO :</strong> <span class="text-blue-300">99375452</span></p>
+      <p><strong>Customer ID :</strong> <span class="text-blue-300">349</span></p>
+      <p><strong>National ID :</strong> <span class="text-blue-300">344736</span></p>
+    </div>
+
+    <!-- EMI Selection -->
+    <div>
+      <label class="inline-flex items-center my-4 p-2">
+        <input type="checkbox" class="form-checkbox text-green-600 w-6 h-6 mr-2" checked />
+        <span class="text-xl sm:text-2xl text-black font-medium">Select your EMI(s) to proceed with payment</span>
+      </label>
+
+      <!-- EMI 1 -->
+      <div class="border border-indigo-900 rounded-lg p-4 mb-4 bg-white shadow-md">
+        <label class="flex items-start space-x-2">
+          <input type="checkbox" class="form-checkbox mt-1 w-6 h-6 text-blue-600" />
+          <div class="w-full">
+            <p class="font-semibold text-black">C2101MAW00052107 | Vehicle</p>
+            <p class="text-black">Account Number</p>
+            <div class="mt-2 space-y-2 text-base sm:text-xl">
+              <div class="flex flex-col sm:flex-row sm:justify-between text-black">
+                <span>Date: <strong>12th Feb 2025</strong></span>
+                <span>EMI Amt: <strong>OMR 100.000</strong></span>
+                <span>Cheq No: <strong>OAR9348394</strong></span>
+                <input type="checkbox" class="form-checkbox mt-1 w-6 h-6 text-blue-600" />
+              </div>
+              <div class="flex flex-col sm:flex-row sm:justify-between text-black">
+
+                <span>Date: <strong>12th Mar 2025</strong></span>
+                <span>EMI Amt: <strong>OMR 100.000</strong></span>
+                <span>Cheq No: <strong>OAR9348394</strong></span>
+                <input type="checkbox" class="form-checkbox mt-1 w-6 h-6 text-blue-600" />
+              </div>
+              <div class="flex flex-col sm:flex-row sm:justify-between text-black">
+                <span>Date: <strong>12th Mar 2025</strong></span>
+                <span>EMI Amt: <strong>OMR 100.000</strong></span>
+                <span>Cheq No: <strong>OAR9348394</strong></span>
+                <input type="checkbox" class="form-checkbox mt-1 w-6 h-6 text-blue-600" />
+              </div>
+            </div>
+            <div class="mt-2 text-blue-600 text-lg sm:text-xl cursor-pointer">View more</div>
+          </div>
+        </label>
+      </div>
+
+      <!-- EMI 2 -->
+      <div class="border border-indigo-900 rounded-lg p-4 mb-4 bg-white shadow-md">
+        <label class="flex items-start space-x-2">
+          <input type="checkbox" class="form-checkbox mt-1 w-6 h-6 text-blue-600" />
+          <div class="w-full text-black">
+            <p class="font-semibold">C2101CBW00052123 | Vehicle</p>
+            <p class="text-gray-500 text-xl">Account Number</p>
+            <div class="mt-2 text-base sm:text-xl flex flex-col sm:flex-row sm:justify-between text-black">
+              <span>Date: <strong>12th Feb 2025</strong></span>
+              <span>EMI Amt: <strong>OMR 100.000</strong></span>
+              <span>Cheq No: <strong>OAR9348394</strong></span>
+              <input type="checkbox" class="form-checkbox mt-1 w-6 h-6 text-blue-600" />
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Total + Button -->
+    <div class="fixed bottom-0 left-0 w-full bg-white shadow-lg pt-4 p-4 z-50">
+      <div class="flex justify-between items-center text-xl text-black font-semibold">
+        <span>Total Amount</span>
+        <div class="flex items-center space-x-2">
+          <span class="text-gray-600">OMR</span>
+          <span>200.000</span>
+          <button class="text-blue-600 text-xl" title="Edit">&#9998;</button>
+        </div>
+      </div>
+      <button onclick="showPaymentPopup()"
+        class="mt-4 w-full bg-green-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition">
+        Confirm to pay
+      </button>
+    </div>
+    
+  </div>
+  
+
+  <!-- Payment Step 1 Modal -->
+  <div id="popup1" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div onclick="showSuccessPopup()"
+      class="bg-white p-8 rounded-xl w-[90%] md:w-2/3 lg:w-1/2 text-center space-y-6 text-black cursor-pointer">
+      <p class="text-xl font-semibold text-gray-800">Please proceed to make your payment using the payment machine next
+        to the kiosk</p>
+      <img src="image/online-payment-security-concept-3d-phone-bill_107791-16722.avif" class="mx-auto h-40"
+        alt="Payment Machine" />
+      <p class="text-lg text-gray-700">Your payment will be confirmed once the transaction is complete</p>
+    </div>
+  </div>
+
+  <!-- Payment Success Modal -->
+  <div id="popup2" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div
+      class="bg-white border-4 border-green-600 p-8 rounded-xl w-[90%] md:w-2/3 lg:w-1/2 text-center space-y-4 text-black relative">
+      <h2 class="text-3xl font-bold text-green-700">Payment Successful</h2>
+      <p class="text-xl">Amount Paid: <strong>OMR 200.000</strong></p>
+      <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" class="mx-auto h-24"
+        alt="Payment Success Icon" />
+      <p class="text-lg text-gray-700">Please collect your printed receipt from the machine below.</p>
+      <div class="flex justify-between items-center mt-6 text-sm text-gray-600">
+        <p class="text-left">Session will expire in <span id="timer">30</span>s</p>
+        <button onclick="goHome()" class="text-blue-600 font-semibold">Home</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPaymentPopup() {
+      document.getElementById('popup1').classList.remove('hidden');
+    }
+
+    function showSuccessPopup() {
+      document.getElementById('popup1').classList.add('hidden');
+      document.getElementById('popup2').classList.remove('hidden');
+      startTimer();
+    }
+
+    function startTimer() {
+      let seconds = 30;
+      const timerEl = document.getElementById('timer');
+      const countdown = setInterval(() => {
+        seconds--;
+        timerEl.textContent = seconds;
+        if (seconds <= 0) {
+          clearInterval(countdown);
+          goHome();
+        }
+      }, 1000);
+    }
+
+    function goHome() {
+      // Replace this with your home page redirection
+      alert("Redirecting to Home...");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+
+</html>

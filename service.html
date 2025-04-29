@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>service master</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen font-sans text-gray-800"> 
+      
+  <div class="flex flex-col md:flex-row min-h-screen">
+    
+    <!-- Desktop Sidebar -->
+    <aside class="bg-indigo-900 rounded-r-lg  text-white w-64 shrink-0 hidden md:block">
+      <div class="flex justify-center ">
+        <img src="image/CCTV__-removebg-preview.png" alt="Logo"
+        style="width: 120px; height: 120px; filter: invert(1) brightness(0.8);" 
+        class="object-contain text-center" />
+             </div>
+        <nav class="p-4 space-y-7">
+            <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+            <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+            <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+            <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+            <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+            
+         
+        </nav>
+        <div class="flex justify-center">
+           <!-- Logout Button -->
+           <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-indigo-900 text-indigo-500">
+            <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+            <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+            Logout
+        </a>
+    </div>
+    </aside>
+    
+    <!-- Mobile Hamburger Button -->
+    <div class="md:hidden fixed top-4 left-4 z-50">
+        <button onclick="toggleSidebar()" class="text-white bg-indigo-700 p-2 rounded shadow">
+            ☰
+        </button>
+    </div>
+    
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-40 transform -translate-x-full transition-transform duration-300 md:hidden">
+        <div class="pt-20 md:pt-6 p-4 text-2xl font-bold border-b border-indigo-500 flex justify-between items-center">
+            <span>Dashboard</span>
+            <button onclick="toggleSidebar()" class="text-white text-xl">&times;</button>
+        </div>
+        <nav class="p-4 space-y-2">
+            <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+            <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+            <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+            <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+            <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+            
+         
+        </nav>
+        <div class="flex justify-center">
+            <!-- Logout Button -->
+            <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-red-500 text-indigo-500">
+             <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+             <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+             Logout
+         </a>
+     </div>
+    </div>
+    
+      <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 fixed top-0 right-0 left-0 md:left-64 z-30">
+        <div class="flex items-center">
+          <!-- Sidebar toggle button (mobile only) -->
+          <button @click="sidebarOpen = true" class="text-gray-500 md:hidden mr-4" aria-label="Open sidebar">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+      
+          <!-- Dashboard Title -->
+          <!-- <h1 class="text-lg font-semibold text-gray-800">Dashboard</h1> -->
+        </div>
+      
+        <!-- Search and Icons -->
+        <div class="flex items-center">
+           
+      
+          <div class="ml-4 flex items-center">
+            <button class="text-gray-500 mr-4" aria-label="Notifications">
+              <i class="fas fa-bell"></i>
+            </button>
+            <div class="w-10 h-10 rounded-full" role="img" aria-label="User avatar"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+              </div>
+          </div>
+        </div>
+      </header>
+      <section class="py-20 w-screen">
+        <div class="p-4">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold">Service Master</h2>
+            <button
+              class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+              onclick="document.getElementById('addModal').classList.remove('hidden')"
+            >
+              Add
+            </button>
+          </div>
+      
+          <div class="overflow-x-auto bg-white shadow rounded-lg">
+            <table class="min-w-full text-sm">
+              <thead class="bg-indigo-900 text-white">
+                <tr>
+                  <th class="px-4 py-3 text-left">S.No</th>
+                  <th class="px-4 py-3 text-center">Service Name</th>
+                  <th class="px-4 py-3 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="serviceTableBody" class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-4 py-3">1</td>
+                  <td class="px-4 py-3 text-center">CCTV Installation</td>
+                  <td class="px-4 py-3 text-right">
+                    <button onclick="editService(this)" class="text-blue-600 hover:underline mr-2">Edit</button>
+                    <button onclick="deleteService(this)" class="text-red-600 hover:underline">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      
+        <!-- Add Modal -->
+        <div id="addModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
+          <div class="bg-white rounded-2xl p-6 w-full max-w-3xl shadow-lg">
+            <h3 class="text-lg font-semibold mb-4">Add Service</h3>
+            <form onsubmit="addService(event)">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Service Type Name</label>
+              <input id="newServiceName" type="text" required placeholder="Enter service name"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+              <div class="flex justify-end gap-2">
+                <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')"
+                  class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100">Cancel</button>
+                <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      
+        <!-- Edit Modal -->
+        <div id="editModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
+          <div class="bg-white rounded-2xl p-6 w-full max-w-3xl shadow-lg">
+            <h3 class="text-lg font-semibold mb-4">Edit Service</h3>
+            <form onsubmit="submitEdit(event)">
+              <input type="hidden" id="editIndex" />
+              <label class="block text-sm font-medium text-gray-700 mb-1">Service Type Name</label>
+              <input id="editServiceName" type="text" required placeholder="Enter service name"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+              <div class="flex justify-end gap-2">
+                <button type="button" onclick="document.getElementById('editModal').classList.add('hidden')"
+                  class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100">Cancel</button>
+                <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <!-- JavaScript Logic -->
+      <script>
+        function addService(event) {
+          event.preventDefault();
+          const name = document.getElementById("newServiceName").value.trim();
+          if (!name) return;
+      
+          const tableBody = document.getElementById("serviceTableBody");
+          const rowCount = tableBody.rows.length;
+          const row = tableBody.insertRow();
+      
+          row.innerHTML = `
+            <td class="px-4 py-3">${rowCount + 1}</td>
+            <td class="px-4 py-3 text-center">${name}</td>
+            <td class="px-4 py-3 text-right">
+              <button onclick="editService(this)" class="text-blue-600 hover:underline mr-2">Edit</button>
+              <button onclick="deleteService(this)" class="text-red-600 hover:underline">Delete</button>
+            </td>
+          `;
+      
+          document.getElementById("newServiceName").value = "";
+          document.getElementById("addModal").classList.add("hidden");
+        }
+      
+        function editService(button) {
+          const row = button.closest("tr");
+          const index = row.rowIndex - 1;
+          const name = row.cells[1].innerText;
+      
+          document.getElementById("editIndex").value = index;
+          document.getElementById("editServiceName").value = name;
+          document.getElementById("editModal").classList.remove("hidden");
+        }
+      
+        function submitEdit(event) {
+          event.preventDefault();
+          const index = parseInt(document.getElementById("editIndex").value);
+          const newName = document.getElementById("editServiceName").value.trim();
+          if (!newName) return;
+      
+          const table = document.getElementById("serviceTableBody");
+          const row = table.rows[index];
+          row.cells[1].innerText = newName;
+      
+          document.getElementById("editModal").classList.add("hidden");
+        }
+      
+        function deleteService(button) {
+          const row = button.closest("tr");
+          const name = row.cells[1].innerText;
+          if (confirm(`Are you sure you want to delete "${name}"?`)) {
+            row.remove();
+            updateSerialNumbers();
+          }
+        }
+      
+        function updateSerialNumbers() {
+          const rows = document.querySelectorAll("#serviceTableBody tr");
+          rows.forEach((row, index) => {
+            row.cells[0].innerText = index + 1;
+          });
+        }
+      </script>
+      <script>
+        function toggleSidebar() {
+          const sidebar = document.getElementById('mobileSidebar');
+          sidebar.classList.toggle('-translate-x-full');
+        }
+      
+        // Export PDF
+        document.querySelector('.bg-blue-600').addEventListener('click', () => {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          doc.text("Reports", 14, 10);
+          doc.autoTable({ html: '#reportTable', startY: 20 });
+          doc.save('reports.pdf');
+        });
+      
+        // Export Excel
+        document.querySelector('.bg-green-600').addEventListener('click', () => {
+          const table = document.getElementById('reportTable');
+          const workbook = XLSX.utils.table_to_book(table, { sheet: "Reports" });
+          XLSX.writeFile(workbook, 'reports.xlsx');
+        });
+      </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wrong OTP Popup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Trigger Button (for demo) -->
+   <!-- Add this to your HTML -->
+<!-- Icon Button -->
+<button onclick="document.getElementById('receipt-modal').classList.remove('hidden')"
+class="p-2 text-white bg-blue-600 rounded-full hover:bg-blue-700">
+<!-- Heroicon: Eye (view) -->
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+
+</button>
+
+<div class="font-mono text-sm max-w-xs mx-auto bg-gray-200  p-4 text-black leading-relaxed">
+  <!-- Header -->
+  <div class="text-center">
+    <p>----------------------------------------</p>
+    <p class="font-semibold">United Finance Co. SAOG</p>
+    <p>----------------------------------------</p>
+  </div>
+
+  <!-- Date/Time/Info -->
+  <div class="mt-2">
+    <p><span class="inline-block w-16">Date</span>: 12-Apr-2025</p>
+    <p><span class="inline-block w-16">Time</span>: 03:45 PM</p>
+    <p><span class="inline-block w-16">Kiosk ID</span>: KSK-MUSCAT-01</p>
+    <p><span class="inline-block w-16">Receipt #</span>: PMT20250412001</p>
+  </div>
+
+  <!-- Title -->
+  <div class="text-center mt-4">
+    <p>----------------------------------------</p>
+    <p class="font-bold">PAYMENT RECEIPT - SUCCESSFUL</p>
+    <p>----------------------------------------</p>
+  </div>
+
+  <!-- Customer Info -->
+  <div class="mt-2">
+    <p><span class="inline-block w-24">Customer ID</span>: 520</p>
+    <p><span class="inline-block w-24">Loan A/C Number</span>: C2101MAW00052127</p>
+  </div>
+
+  <!-- Payment Info -->
+  <div class="mt-2">
+    <p><span class="inline-block w-24">EMI Amount</span>: OMR 150.000</p>
+    <p><span class="inline-block w-24">Payment Mode</span>: Card</p>
+    <p><span class="inline-block w-24">Payment Number</span>: PMT20250412001</p>
+  </div>
+
+  <!-- Status -->
+  <div class="mt-2">
+    <p>----------------------------------------</p>
+    <p><span class="inline-block w-16">Status</span>: <span class="text-green-600 font-bold">SUCCESSFUL</span></p>
+  </div>
+
+  <!-- Note -->
+  <div class="mt-2">
+    <p><span class="inline-block w-16">Note</span>: Thank you for your payment.</p>
+    <p class="ml-16">Please retain this receipt</p>
+    <p class="ml-16">for your records.</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="text-center mt-2">
+    <p>----------------------------------------</p>
+    <p>For assistance, call: <strong>800-12345</strong></p>
+  </div>
+</div>
+</body>
+</html>

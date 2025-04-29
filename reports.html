@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans text-gray-800"> 
+      
+  <div class="flex flex-col md:flex-row min-h-screen">
+    
+    <!-- Desktop Sidebar -->
+    <aside class="bg-indigo-900 rounded-r-lg  text-white w-64 shrink-0 hidden md:block">
+      <div class="flex justify-center ">
+        <img src="image/CCTV__-removebg-preview.png" alt="Logo"
+        style="width: 120px; height: 120px; filter: invert(1) brightness(0.8);" 
+        class="object-contain text-center" />
+             </div>
+        <nav class="p-4 space-y-7">
+            <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+            <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+            <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+            <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+            <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+            
+         
+        </nav>
+        <div class="flex justify-center">
+           <!-- Logout Button -->
+           <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-indigo-900 text-indigo-500">
+            <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+            <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+            Logout
+        </a>
+    </div>
+    </aside>
+    
+    <!-- Mobile Hamburger Button -->
+    <div class="md:hidden fixed top-4 left-4 z-50">
+        <button onclick="toggleSidebar()" class="text-white bg-indigo-700 p-2 rounded shadow">
+            ☰
+        </button>
+    </div>
+    
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-40 transform -translate-x-full transition-transform duration-300 md:hidden">
+        <div class="pt-20 md:pt-6 p-4 text-2xl font-bold border-b border-indigo-500 flex justify-between items-center">
+            <span>Dashboard</span>
+            <button onclick="toggleSidebar()" class="text-white text-xl">&times;</button>
+        </div>
+        <nav class="p-4 space-y-2">
+            <a href="/dashboard.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Dashboard</a>
+            <a href="/customer.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Customer management</a>
+            <a href="/service.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Service master</a>
+            <a href="/reports.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">Reports</a>
+            <a href="/user management.html" class="block py-2 px-4 hover:text-indigo-900 font-bold rounded-lg hover:bg-gray-100">User management</a>
+            
+         
+        </nav>
+        <div class="flex justify-center">
+            <!-- Logout Button -->
+            <a href="/logout.html" class="relative px-6 mt-44 py-3 rounded-lg overflow-hidden group bg-white border-2 border-red-500 text-indigo-500">
+             <span class="absolute inset-0 bg-red-600 transform -translate-x-full group-hover:translate-x-0 transition duration-300"></span>
+             <span class="relative z-10 group-hover:text-white text-indigo-500 transition-colors duration-300">
+             Logout
+         </a>
+     </div>
+    </div>
+    
+      <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 fixed top-0 right-0 left-0 md:left-64 z-30">
+        <div class="flex items-center">
+          <!-- Sidebar toggle button (mobile only) -->
+          <button @click="sidebarOpen = true" class="text-gray-500 md:hidden mr-4" aria-label="Open sidebar">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+      
+          <!-- Dashboard Title -->
+          <!-- <h1 class="text-lg font-semibold text-gray-800">Dashboard</h1> -->
+        </div>
+      
+        <!-- Search and Icons -->
+        <div class="flex items-center">
+           
+      
+          <div class="ml-4 flex items-center">
+            <button class="text-gray-500 mr-4" aria-label="Notifications">
+              <i class="fas fa-bell"></i>
+            </button>
+            <div class="w-10 h-10 rounded-full" role="img" aria-label="User avatar"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+              </div>
+          </div>
+        </div>
+      </header>
+
+    <!-- Report Section -->
+    <section class="py-20 mt-5 bg-gray-50 w-full">
+      <div class="container mx-auto p-4">
+    
+        <!-- Filter Row -->
+        <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
+          <select class="p-3 border border-gray-300 rounded-lg w-full md:w-auto">
+            <option>Customer</option>
+            <option>Lokesh</option>
+            <option>Hari</option>
+            <option>Jai</option>
+            <option>Muralri</option>
+            <option>Srini</option>
+            <option>Selva</option>
+            <option>Alvin</option>
+          </select>
+          <select class="p-3 border border-gray-300 rounded-lg w-full md:w-auto">
+            <option>Distributor</option>
+            <option>Distributor 1</option>
+            <option>Distributor 2</option>
+          </select>
+          <select class="p-3 border border-gray-300 rounded-lg w-full md:w-auto">
+            <option>Service Type</option>
+            <option>Basic</option>
+            <option>Advanced</option>
+          </select>
+          <select class="p-3 border border-gray-300 rounded-lg w-full md:w-auto">
+            <option>Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
+    
+          <div class="flex gap-2 w-full md:w-auto">
+            <input type="date" class="p-3 border border-gray-300 rounded-lg">
+            <input type="date" class="p-3 border border-gray-300 rounded-lg">
+          </div>
+    
+          <div class="flex gap-4 w-full md:w-auto">
+            <button class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700">Export PDF</button>
+            <button class="px-6 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700">Export Excel</button>
+          </div>
+        </div>
+    
+        <!-- Add Report Button -->
+        <div class="flex justify-end mb-4">
+          <button id="addButton" class="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-md hover:bg-purple-700">
+            Add Report
+          </button>
+        </div>
+    
+        <!-- Modal Popup for Add Report -->
+        <div id="addFormModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+          <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-semibold">Add New Report</h3>
+              <button id="closeModal" class="text-gray-500 text-xl">&times;</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" placeholder="Customer Name" id="customer" class="p-3 border border-gray-300 rounded-lg">
+              <input type="text" placeholder="Distributor Name" id="distributor" class="p-3 border border-gray-300 rounded-lg">
+              <input type="text" placeholder="Service Type" id="service" class="p-3 border border-gray-300 rounded-lg">
+              <input type="number" placeholder="No. of Cameras" id="cameras" class="p-3 border border-gray-300 rounded-lg">
+              <input type="number" placeholder="No. of Employees" id="employees" class="p-3 border border-gray-300 rounded-lg">
+              <input type="date" placeholder="Start Date" id="startDate" class="p-3 border border-gray-300 rounded-lg">
+              <input type="date" placeholder="End Date" id="endDate" class="p-3 border border-gray-300 rounded-lg">
+              <select id="status" class="p-3 border border-gray-300 rounded-lg">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="flex justify-end mt-4">
+              <button id="submitReport" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">Add</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Table Section -->
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+          <table id="reportTable" class="min-w-full table-auto text-sm">
+            <thead class="bg-indigo-900 text-white">
+              <tr>
+                <th class="p-4 text-left">S.No</th>
+                <th class="p-4 text-left">Customer Name</th>
+                <th class="p-4 text-left">Distributor Name</th>
+                <th class="p-4 text-left">Service Type</th>
+                <th class="p-4 text-left">No. of Cameras</th>
+                <th class="p-4 text-left">No. of Employees</th>
+                <th class="p-4 text-left">Start Date</th>
+                <th class="p-4 text-left">End Date</th>
+                <th class="p-4 text-left">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example static row -->
+              <tr class="hover:bg-gray-50">
+                <td class="p-4">1</td>
+                <td class="p-4">Company A</td>
+                <td class="p-4">Distributor 1</td>
+                <td class="p-4">Basic</td>
+                <td class="p-4">5</td>
+                <td class="p-4">10</td>
+                <td class="p-4">2025-01-01</td>
+                <td class="p-4">2026-01-01</td>
+                <td class="p-4 text-green-600">Active</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- Scripts -->
+    <script>
+      // Open modal when Add Report button is clicked
+      document.getElementById('addButton').addEventListener('click', () => {
+        const modal = document.getElementById('addFormModal');
+        modal.classList.remove('hidden');
+      });
+    
+      // Close modal when Close button is clicked
+      document.getElementById('closeModal').addEventListener('click', () => {
+        const modal = document.getElementById('addFormModal');
+        modal.classList.add('hidden');
+      });
+    
+      // Add new report
+      document.getElementById('submitReport').addEventListener('click', () => {
+        const customer = document.getElementById('customer').value;
+        const distributor = document.getElementById('distributor').value;
+        const service = document.getElementById('service').value;
+        const cameras = document.getElementById('cameras').value;
+        const employees = document.getElementById('employees').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        const status = document.getElementById('status').value;
+    
+        if (!customer || !distributor || !service || !cameras || !employees || !startDate || !endDate || !status) {
+          alert("Please fill in all fields.");
+          return;
+        }
+    
+        const tableBody = document.querySelector('#reportTable tbody');
+        const rowCount = tableBody.rows.length + 1;
+    
+        const newRow = document.createElement('tr');
+        newRow.classList.add('hover:bg-gray-50');
+        newRow.innerHTML = `
+          <td class="p-4">${rowCount}</td>
+          <td class="p-4">${customer}</td>
+          <td class="p-4">${distributor}</td>
+          <td class="p-4">${service}</td>
+          <td class="p-4">${cameras}</td>
+          <td class="p-4">${employees}</td>
+          <td class="p-4">${startDate}</td>
+          <td class="p-4">${endDate}</td>
+          <td class="p-4 ${status === 'Active' ? 'text-green-600' : 'text-red-600'}">${status}</td>
+        `;
+    
+        tableBody.appendChild(newRow);
+    
+        // Close modal after adding report
+        const modal = document.getElementById('addFormModal');
+        modal.classList.add('hidden');
+    
+        // Reset form
+        document.querySelectorAll('#addFormModal input, #addFormModal select').forEach(el => el.value = '');
+      });
+    
+      // Export PDF
+      document.querySelector('.bg-blue-600').addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text("Reports", 14, 10);
+        doc.autoTable({ html: '#reportTable', startY: 20 });
+        doc.save('reports.pdf');
+      });
+    
+      // Export Excel
+      document.querySelector('.bg-green-600').addEventListener('click', () => {
+        const table = document.getElementById('reportTable');
+        const workbook = XLSX.utils.table_to_book(table, { sheet: "Reports" });
+        XLSX.writeFile(workbook, 'reports.xlsx');
+      });
+    </script>
+    
+    <script>
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll('.tab-section');
+        sections.forEach(section => section.classList.add('hidden'));
+        document.getElementById(sectionId).classList.remove('hidden');
+  
+        // Close mobile sidebar on selection
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        if (mobileSidebar && !mobileSidebar.classList.contains('-translate-x-full')) {
+          mobileSidebar.classList.add('-translate-x-full');
+        }
+      }
+  
+      function toggleSidebar() {
+        const sidebar = document.getElementById('mobileSidebar');
+        sidebar.classList.toggle('-translate-x-full');
+      }
+    </script>
+</body>
+</html>
